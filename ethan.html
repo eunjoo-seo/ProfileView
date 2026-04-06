@@ -19,6 +19,15 @@ body {
   text-align: center;
 }
 
+h2 {
+  margin-bottom: 6px;
+}
+
+.notice {
+  font-size: 14px;
+  margin-bottom: 25px;
+}
+
 .profiles {
   display: flex;
   justify-content: space-around;
@@ -33,6 +42,7 @@ body {
   border: 3px solid transparent;
   width: 200px;
   cursor: pointer;
+  transition: 0.2s;
 }
 
 .profile.selected {
@@ -52,7 +62,7 @@ body {
 }
 
 .videos {
-  margin-top: 30px;
+  margin-top: 35px;
   display: flex;
   justify-content: center;
   gap: 20px;
@@ -69,56 +79,65 @@ video {
 <body>
 <div class="container">
 
-<h2>People who accessed your profile</h2>
-<p><strong>You can select up to 2 people.</strong> Once selected, your choice is final.</p>
+  <h2>People who accessed your profile</h2>
+  <p class="notice">
+    <strong>You can select up to 2 people.</strong><br>
+    Once selected, your choice is final.
+  </p>
 
-<div class="profiles">
+  <div class="profiles">
 
-  <div class="profile" data-video="samVideo">
-    Sam.png
-    <p>Sam</p>
+    <div class="profile" data-video="samVideo">
+      <img src="Sam.png" alt="Sam">
+      <p>Sam</p>
+    </div>
+
+    <div class="profile" data-video="ejVideo">
+      <img src="EJ.png" alt="EJ">
+      <p>EJ</p>
+    </div>
+
+    <div class="profile" data-video="bethanyVideo">
+      <img src="Bethany.png" alt="Bethany">
+      <p>Bethany</p>
+    </div>
+
   </div>
 
-  <div class="profile" data-video="ejVideo">
-    EJ.png
-    <p>EJ</p>
+  <div class="videos">
+    <video id="samVideo" controls>
+      <source src="Ethan - Sam Cutdown.mp4" type="video/mp4">
+    </video>
+
+    <video id="ejVideo" controls>
+      <source src="Ethan - EJ Cutdown.mp4" type="video/mp4">
+    </video>
+
+    <video id="bethanyVideo" controls>
+      <source src="Ethan - Bethany Cutdown.mp4" type="video/mp4">
+    </video>
   </div>
-
-  <div class="profile" data-video="bethanyVideo">
-    Bethany.png
-    <p>Bethany</p>
-  </div>
-
-</div>
-
-<div class="videos">
-  Ethan - Sam Cutdown.mp4</video>
-  Ethan - EJ Cutdown.mp4</video>
-  Ethan - Bethany Cutdown.mp4</video>
-</div>
 
 </div>
 
 <script>
 let selectedCount = 0;
 const maxSelections = 2;
-const profiles = document.querySelectorAll('.profile');
 
-profiles.forEach(profile => {
-  profile.addEventListener('click', () => {
+document.querySelectorAll(".profile").forEach(profile => {
+  profile.addEventListener("click", () => {
+    if (profile.classList.contains("selected")) return;
     if (selectedCount >= maxSelections) return;
 
-    profile.classList.add('selected');
+    profile.classList.add("selected");
     selectedCount++;
 
     const videoId = profile.dataset.video;
-    document.getElementById(videoId).style.display = 'block';
+    document.getElementById(videoId).style.display = "block";
 
     if (selectedCount === maxSelections) {
-      profiles.forEach(p => {
-        if (!p.classList.contains('selected')) {
-          p.classList.add('disabled');
-        }
+      document.querySelectorAll(".profile:not(.selected)").forEach(p => {
+        p.classList.add("disabled");
       });
     }
   });
@@ -127,4 +146,3 @@ profiles.forEach(profile => {
 
 </body>
 </html>
-``
