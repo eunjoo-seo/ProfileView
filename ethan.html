@@ -39,12 +39,6 @@ body {
   object-fit: cover;
 }
 
-.profile-name {
-  margin-top: 10px;
-  font-weight: 600;
-  font-size: 16px;
-}
-
 video {
   width: 420px;
   margin-top: 20px;
@@ -79,9 +73,9 @@ button {
 <script>
 // ---------- DATA ----------
 const profiles = [
-  { name: "Sam", img: "./Sam.png", video: "./Ethan - Sam Cutdown.mp4" },
-  { name: "EJ", img: "./EJ.png", video: "./Ethan - EJ Cutdown.mp4" },
-  { name: "Bethany", img: "./Bethany.png", video: "./Ethan - Bethany Cutdown.mp4" }
+  { name: "Sam", img: "Sam.png", video: "Ethan - Sam Cutdown.mp4" },
+  { name: "EJ", img: "EJ.png", video: "Ethan - EJ Cutdown.mp4" },
+  { name: "Bethany", img: "Bethany.png", video: "Ethan - Bethany Cutdown.mp4" }
 ];
 
 // ---------- RANDOMIZE ----------
@@ -106,7 +100,7 @@ function loadProfile(index) {
 
   profileContainer.innerHTML = `
     <div class="profile">
-      <img src="${p.img}" alt="${p.namee-name">${p.name}</div>
+      <img src="${p.img}" altame}</p>
     </div>
   `;
 
@@ -140,4 +134,3 @@ loadProfile(currentIndex);
 
 </body>
 </html>
-``
