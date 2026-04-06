@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Olivia – Profile Visitors</title>
+<title>Your Profile</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style>
@@ -39,6 +39,11 @@ body {
   border-color: #ff4d6d;
 }
 
+.profile.disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
 .profile img {
   width: 150px;
   height: 150px;
@@ -63,45 +68,63 @@ video {
 
 <body>
 <div class="container">
-  <h2>People who accessed Olivia’s profile</h2>
-  <p>Select up to <strong>two</strong> profiles to view their interactions.</p>
 
-  <div class="profiles">
+<h2>People who accessed your profile</h2>
+<p><strong>You can select up to 2 people.</strong> Once selected, your choice is final.</p>
 
-    <div class="profile" onclick="toggle(this, 'jackVideo')">
-      <img src="Jack.png">
-      <p>Jack</p>
-    </div>
+<div class="profiles">
 
-    <div class="profile" onclick="toggle(this, 'francoVideo')">
-      <img src="Franco.png">
-      <p>Franco</p>
-    </div>
-
-    <div class="profile" onclick="toggle(this, 'broderickVideo')">
-      <img src="Broderick.png">
-      <p>Broderick</p>
-    </div>
-
+  <div class="profile" data-video="jackVideo">
+    Jack.png
+    <p>Jack</p>
   </div>
 
-  <div class="videos">
-    <video id="jackVideo" controls src="Olivia - Jack Cutdown.mp4"></video>
-    <video id="francoVideo" controls src="Olivia - Franco Cutdown.mp4"></video>
-    <video id="broderickVideo" controls src="Olivia - Broderick Cutdown.mp4"></video>
+  <div class="profile" data-video="francoVideo">
+    Franco.png
+    <p>Franco</p>
   </div>
+
+  <div class="profile" data-video="broderickVideo">
+    Broderick.png
+    <p>Broderick</p>
+  </div>
+
+</div>
+
+<div class="videos">
+  Olivia - Jack Cutdown.mp4</video>
+  Olivia - Franco Cutdown.mp4</video>
+  Olivia - Broderick Cutdown.mp4</video>
+</div>
+
 </div>
 
 <script>
-function toggle(card, videoId) {
-  const selected = document.querySelectorAll('.profile.selected');
-  if (!card.classList.contains('selected') && selected.length >= 2) return;
+let selectedCount = 0;
+const maxSelections = 2;
+const profiles = document.querySelectorAll('.profile');
 
-  card.classList.toggle('selected');
-  const video = document.getElementById(videoId);
-  video.style.display = card.classList.contains('selected') ? 'block' : 'none';
-}
+profiles.forEach(profile => {
+  profile.addEventListener('click', () => {
+    if (selectedCount >= maxSelections) return;
+
+    profile.classList.add('selected');
+    selectedCount++;
+
+    const videoId = profile.dataset.video;
+    document.getElementById(videoId).style.display = 'block';
+
+    if (selectedCount === maxSelections) {
+      profiles.forEach(p => {
+        if (!p.classList.contains('selected')) {
+          p.classList.add('disabled');
+        }
+      });
+    }
+  });
+});
 </script>
 
 </body>
 </html>
+``
