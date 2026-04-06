@@ -1,0 +1,110 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Ethan – Profile Visitors</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #f6f6f6;
+  margin: 0;
+  padding: 20px;
+}
+
+.container {
+  max-width: 1000px;
+  margin: auto;
+  text-align: center;
+}
+
+.profiles {
+  display: flex;
+  justify-content: space-around;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.profile {
+  background: white;
+  padding: 15px;
+  border-radius: 12px;
+  border: 3px solid transparent;
+  width: 200px;
+  cursor: pointer;
+}
+
+.profile.selected {
+  border-color: #4d96ff;
+}
+
+.profile img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.videos {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+video {
+  width: 420px;
+  display: none;
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<h2>People who accessed Ethan’s profile</h2>
+<p>Select up to <strong>two</strong> profiles to view their interactions.</p>
+
+<div class="profiles">
+
+  <div class="profile" onclick="toggleProfile(this, 'samVideo')">
+    images/sam.jpg
+    <p>Sam</p>
+  </div>
+
+  <div class="profile" onclick="toggleProfile(this, 'ejVideo')">
+    images/ej.jpg
+    <p>EJ</p>
+  </div>
+
+  <div class="profile" onclick="toggleProfile(this, 'bethanyVideo')">
+    images/bethany.jpg
+    <p>Bethany</p>
+  </div>
+
+</div>
+
+<div class="videos">
+  videos/sam_interaction.mp4</video>
+  videos/ej_interaction.mp4>
+  videos/bethany_interaction.mp4</video>
+</div>
+
+</div>
+
+<script>
+function toggleProfile(profile, videoId) {
+  const selected = document.querySelectorAll('.profile.selected');
+  if (!profile.classList.contains('selected') && selected.length >= 2) return;
+
+  profile.classList.toggle('selected');
+  const video = document.getElementById(videoId);
+  video.style.display = profile.classList.contains('selected') ? 'block' : 'none';
+}
+</script>
+
+</body>
+</html>
