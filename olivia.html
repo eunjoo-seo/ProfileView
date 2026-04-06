@@ -9,7 +9,6 @@
 body {
   font-family: Arial, sans-serif;
   background: #f6f6f6;
-  margin: 0;
   padding: 20px;
 }
 
@@ -24,6 +23,7 @@ body {
   justify-content: space-around;
   gap: 20px;
   flex-wrap: wrap;
+  margin-top: 20px;
 }
 
 .profile {
@@ -75,26 +75,34 @@ video {
 <div class="profiles">
 
   <div class="profile" data-video="jackVideo">
-    Jack.png
+    <img src="Jack.png" alt="Jack">
     <p>Jack</p>
   </div>
 
   <div class="profile" data-video="francoVideo">
-    Franco.png
+    <img src="Franco.png" alt="Franco">
     <p>Franco</p>
   </div>
 
   <div class="profile" data-video="broderickVideo">
-    Broderick.png
+    <img src="Broderick.png" alt="Broderick">
     <p>Broderick</p>
   </div>
 
 </div>
 
 <div class="videos">
-  Olivia - Jack Cutdown.mp4</video>
-  Olivia - Franco Cutdown.mp4</video>
-  Olivia - Broderick Cutdown.mp4</video>
+  <video id="jackVideo" controls>
+    <source src="Olivia - Jack Cutdown.mp4" type="video/mp4">
+  </video>
+
+  <video id="francoVideo" controls>
+    <source src="Olivia - Franco Cutdown.mp4" type="video/mp4">
+  </video>
+
+  <video id="broderickVideo" controls>
+    <source src="Olivia - Broderick Cutdown.mp4" type="video/mp4">
+  </video>
 </div>
 
 </div>
@@ -102,23 +110,20 @@ video {
 <script>
 let selectedCount = 0;
 const maxSelections = 2;
-const profiles = document.querySelectorAll('.profile');
 
-profiles.forEach(profile => {
-  profile.addEventListener('click', () => {
+document.querySelectorAll(".profile").forEach(profile => {
+  profile.addEventListener("click", () => {
+    if (profile.classList.contains("selected")) return;
     if (selectedCount >= maxSelections) return;
 
-    profile.classList.add('selected');
+    profile.classList.add("selected");
     selectedCount++;
 
-    const videoId = profile.dataset.video;
-    document.getElementById(videoId).style.display = 'block';
+    document.getElementById(profile.dataset.video).style.display = "block";
 
     if (selectedCount === maxSelections) {
-      profiles.forEach(p => {
-        if (!p.classList.contains('selected')) {
-          p.classList.add('disabled');
-        }
+      document.querySelectorAll(".profile:not(.selected)").forEach(p => {
+        p.classList.add("disabled");
       });
     }
   });
@@ -127,4 +132,3 @@ profiles.forEach(profile => {
 
 </body>
 </html>
-``
