@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Your Profile</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body { font-family: Arial, sans-serif; background:#f6f6f6; padding:20px; }
+.container { max-width:900px; margin:auto; text-align:center; }
+.profile { background:white; padding:18px; border-radius:12px; width:240px; margin:0 auto 20px; }
+.profile img { width:160px; height:160px; border-radius:50%; object-fit:cover; }
+.profile-name { margin-top:10px; font-weight:600; }
+video { width:480px; margin-top:20px; }
+</style>
+</head>
+
+<body>
+<div class="container">
+<h2>People who accessed your profile</h2>
+<div class="profile">
+  <img src="./Franco.png" alt="Franco">
+  <div class="profile-name">Franco</div>
+</div>
+<video controls playsinline webkit-playsinline style="width:480px;">
+  <source src="./Olivia - Franco Cutdown.mp4" type="video/mp4">
+</video>
+</div>
+</body>
+</html>
+``
